@@ -1,0 +1,20 @@
+#funzione inizio
+def return_Half(n):
+	if n%2==0:
+		return n/2
+	else:
+		return (n+1)/2
+
+#funzione indietro
+def backwards(s):
+	if s%2==0:
+		return s/2
+	else:
+		return (s+1)/2
+	
+#funzione avanti 
+def forwards(s, n):
+	if (n-s)%2==0:
+		return s+(n-s)/2
+	else:
+		return s+(n-s+1)/2

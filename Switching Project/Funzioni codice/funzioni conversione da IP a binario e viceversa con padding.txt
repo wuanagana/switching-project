@@ -1,0 +1,50 @@
+#funzione per tradurre da IP a binario
+1- ricevere stringa IP
+2- split stringa e convertire numeri dell'indirizzo in binario
+3- riunire binario in unico numero
+
+def fromIPtoBinary(string):
+	w1, w2, w3, w4 = string.split(".")
+	binaryN = [ str(bin(int(w1)))[2:], str(bin(int(w2)))[2:], str(bin(int(w3)))[2:], str(bin(int(w4)))[2:]]
+	binaryN = paddingAddress(binaryN)
+	addressIP = binaryN[0]
+	i=1
+	while i<4:
+		addressIP = addressIP+binaryN[i]
+		i=i+1
+	return str(addressIP)
+
+##################################################################################
+
+#funzione per convertire da binario a stringa IP
+#1- convertire da binario a indirizzo IP decimale 
+#2- da IP decimale a stringa
+
+def fromBinarytoIP(string):
+	splitter = 8
+	divided = [string[i:i+splitter] for i in range(0, len(string), splitter)]
+	decimal = []
+	i = 0
+	while i < 4:
+		decimal.append(int(divided[i], 2))
+		i = i + 1
+	IPaddress = str(decimal[0])
+	for i in range(1,4):
+		IPaddress = IPaddress +'.'+ str(decimal[i])
+	return str(IPaddress)
+
+
+##################################################################################
+
+#funzione per portare indirizzi ad 8 bit in caso non li occupino tutti
+#ciclo sulla differenza di cifre e poi '0'+stringa
+
+def paddingAddress(list):
+	i = 0
+	padded_list = list;
+	while i < len(list):
+		if len(list)<8:
+			while len(padded_list[i]) < 8:
+				padded_list[i] = '0' + padded_list[i]
+		i = i + 1
+	return padded_list
